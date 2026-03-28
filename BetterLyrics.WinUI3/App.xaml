@@ -55,9 +55,14 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
                     <ImageSource x:Key="MusicWave">ms-appx:///Assets/MusicWaveBlack.gif</ImageSource>
+                    <!--  Win10: default caption fill can show as a white strip with ExtendsContentIntoTitleBar  -->
+                    <SolidColorBrush x:Key="WindowCaptionBackground" Color="#00000000" />
+                    <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled" Color="#00000000" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <ImageSource x:Key="MusicWave">ms-appx:///Assets/MusicWaveWhite.gif</ImageSource>
+                    <SolidColorBrush x:Key="WindowCaptionBackground" Color="#00000000" />
+                    <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled" Color="#00000000" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 

@@ -1,10 +1,11 @@
-﻿using BetterLyrics.WinUI3.Enums;
+using BetterLyrics.WinUI3.Enums;
 using BetterLyrics.WinUI3.Helper;
 using BetterLyrics.WinUI3.Services.LocalizationService;
 using BetterLyrics.WinUI3.Services.SettingsService;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Windows.UI;
 
 namespace BetterLyrics.WinUI3.Extensions
 {
@@ -34,7 +35,22 @@ namespace BetterLyrics.WinUI3.Extensions
                 window.ExtendsContentIntoTitleBar = true;
                 window.AppWindow.TitleBar.PreferredHeightOption = titleBarHeightOption;
 
+                ApplyTransparentCaptionChrome(window.AppWindow.TitleBar);
+
                 window.SystemBackdrop = SystemBackdropHelper.CreateSystemBackdrop(backdropType);
+            }
+
+            /// <summary>
+            /// Win10 (and some Win11 builds) leaves a visible light strip behind caption buttons when
+            /// <see cref="Window.ExtendsContentIntoTitleBar"/> is true unless caption chrome is fully transparent.
+            /// </summary>
+            private static void ApplyTransparentCaptionChrome(AppWindowTitleBar titleBar)
+            {
+                var transparent = Color.FromArgb(0, 0, 0, 0);
+                titleBar.BackgroundColor = transparent;
+                titleBar.InactiveBackgroundColor = transparent;
+                titleBar.ButtonBackgroundColor = transparent;
+                titleBar.ButtonInactiveBackgroundColor = transparent;
             }
 
             public void SyncTheme()
